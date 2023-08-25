@@ -1,8 +1,12 @@
-import moment from 'moment-timezone';
+import util from 'util';
+import { roleData } from './data/roles';
+import { nested } from './mapper/mapper';
 
-const dateTime = moment.tz(
-  'May 30th 2023 8:30PM',
-  'MMM Do YYYY h:mA',
-  'Asia/Tehran',
+const transform = nested('role', 'user', 'permission');
+console.log(
+  util.inspect(transform(roleData), {
+    showHidden: false,
+    depth: null,
+    colors: true,
+  }),
 );
-console.log(moment().startOf('minutes').from(dateTime));
